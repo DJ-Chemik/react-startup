@@ -1,0 +1,28 @@
+{
+    "workbench.colorTheme": "Dracula",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.tabSize": 2,
+    "actionButtons": {
+        "loadNpmCommands": false,
+        "commands": [
+            {
+                "name": "Install",
+                "cwd": "${workspaceFolder}",
+                "command": "yarn install",
+                "color": "red"
+            },
+            {
+                "name": "Build",
+                "cwd": "${workspaceFolder}",
+                "command": "yarn build",
+                "color": "yellow"
+            },
+            {
+                "name": "Start",
+                "cwd": "${workspaceFolder}",
+                "command": "yarn start",
+                "color": "cyan"
+            },
+        ]
+    },
+}
