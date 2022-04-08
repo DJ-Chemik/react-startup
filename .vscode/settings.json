@@ -23,6 +23,18 @@
                 "command": "yarn start",
                 "color": "cyan"
             },
+            {
+                "name": "Elcetron local",
+                "cwd": "${workspaceFolder}",
+                "command": "yarn start:electron",
+                "color": "cyan"
+            },
+            {
+                "name": "Electron PROD",
+                "cwd": "${workspaceFolder}",
+                "command": "yarn electron:build",
+                "color": "#662266"
+            },
         ]
     },
 }
