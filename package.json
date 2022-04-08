@@ -2,13 +2,39 @@
   "name": "react-startup",
   "version": "0.1.0",
   "private": true,
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
+    "electron:start": "wait-on tcp:3000 && electron .",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "extends": null,
+    "appId": "react-startup",
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "portable"
+    }
   },
   "dependencies": {
+    "@electron/remote": "^2.0.4",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -16,11 +42,21 @@
     "@types/node": "^16.11.22",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "styled-components": "^5.3.3",
     "typescript": "^4.5.5",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.22",
+    "concurrently": "^7.0.0",
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.13",
+    "electron-is-dev": "^2.0.0",
+    "wait-on": "^6.0.0"
   },
   "eslintConfig": {
     "extends": [
